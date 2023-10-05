@@ -1,5 +1,6 @@
 package mobral.himuro.springbootessentials.controller;
 
+import jakarta.validation.Valid;
 import mobral.himuro.springbootessentials.domain.Anime;
 import mobral.himuro.springbootessentials.requests.AnimePostRequestBody;
 import mobral.himuro.springbootessentials.requests.AnimePutRequestBody;
@@ -41,7 +42,7 @@ public class AnimeController {
     }
 
     @PostMapping
-    public ResponseEntity<Anime> save(@RequestBody AnimePostRequestBody animePostRequestBody){
+    public ResponseEntity<Anime> save(@RequestBody @Valid AnimePostRequestBody animePostRequestBody){
         return new ResponseEntity<>(animeService.save(animePostRequestBody), HttpStatus.CREATED);
     }
 
