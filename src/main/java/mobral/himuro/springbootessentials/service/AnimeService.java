@@ -8,6 +8,7 @@ import mobral.himuro.springbootessentials.repository.AnimeRepository;
 import mobral.himuro.springbootessentials.requests.AnimePostRequestBody;
 import mobral.himuro.springbootessentials.requests.AnimePutRequestBody;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -28,6 +29,8 @@ public class AnimeService {
                 .orElseThrow(() -> new BadRequestException("Anime not Found"));
     }
 
+
+    @Transactional
     public Anime save(AnimePostRequestBody animePostRequestBody) {
         return animeRepository.save(AnimeMapper.INSTANCE.toAnime(animePostRequestBody));
     }
