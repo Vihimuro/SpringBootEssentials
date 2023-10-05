@@ -2,13 +2,12 @@ package mobral.himuro.springbootessentials.service;
 
 import lombok.RequiredArgsConstructor;
 import mobral.himuro.springbootessentials.domain.Anime;
+import mobral.himuro.springbootessentials.exception.BadRequestException;
 import mobral.himuro.springbootessentials.mapper.AnimeMapper;
 import mobral.himuro.springbootessentials.repository.AnimeRepository;
 import mobral.himuro.springbootessentials.requests.AnimePostRequestBody;
 import mobral.himuro.springbootessentials.requests.AnimePutRequestBody;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -26,7 +25,7 @@ public class AnimeService {
 
     public Anime findByIdOrThrowBadRequestException(long id){
         return  animeRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Anime not Found"));
+                .orElseThrow(() -> new BadRequestException("Anime not Found"));
     }
 
     public Anime save(AnimePostRequestBody animePostRequestBody) {
